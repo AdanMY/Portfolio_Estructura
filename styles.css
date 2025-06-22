@@ -144,6 +144,7 @@ h2 {
   font-weight: 500;
   gap: 0.5em;
   font-weight: bold;
+  margin-bottom: 12px;
 }
 
 .tech-badge img {
@@ -230,7 +231,7 @@ h2 {
 }
 
 .exp-desc {
-  color: #000000;
+  color: var(--color-text);
   font-size: 0.98em;
   margin-top: 0.2em;
 }
@@ -264,6 +265,7 @@ h2 {
   object-fit: cover;
   border-right: 1px solid var(--color-border);
   background: var(--color-bg-alt);
+  flex-shrink: 0;
 }
 
 .project-card div {
@@ -311,11 +313,19 @@ h2 {
   background: #147a9c;
 }
 
-.github-link img {
+.github-link img,
+.project-link img {
   width: 20px;
   height: 20px;
   filter: brightness(0) invert(1);
   display: block;
+}
+
+@media (min-width: 701px) {
+  .project-card .github-link + .github-link {
+    margin-left: 310px;
+    margin-top: -39px;
+  }
 }
 
 .contact a {
@@ -376,7 +386,7 @@ h2 {
 }
 
 .form-description {
-  color: #000000;
+  color: var(--color-text);
   font-size: 0.98em;
   margin-top: 0.2em;
 }
@@ -472,6 +482,18 @@ h2 {
     width: auto;
     display: inline-flex;
   }
+  .project-details summary {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    color: #1891b6;
+    font-weight: 500;
+    margin-bottom: 0.4em;
+    outline: none;
+    gap: 0.3em;
+    list-style: none;
+  }
 }
 
 /* Mejoras para tablets */
@@ -493,7 +515,7 @@ h2 {
     object-fit: cover;
     display: block;
     margin: 0 auto;
-    margin-right: -190px;
+    margin-right: -200px;
   }
   .profile-info {
     display: flex;
@@ -559,16 +581,13 @@ h2 {
     margin: 0;
   }
   .project-card > div {
-    width: calc(100% - 150px);
-    padding: 1em 1.5em;
-    display: flex;
-    flex-direction: column;
+    padding: 1rem 2rem;
     align-items: flex-start;
   }
-  .github-link {
-    align-self: flex-start;
-    width: auto;
-    display: inline-flex;
+
+  .project-card .github-link + .github-link {
+    margin-left: 0px;
+    margin-top: 10px;
   }
 }
 
@@ -660,5 +679,102 @@ h1 {
   margin-bottom: 5px;
   filter: invert(19%) sepia(88%) saturate(7491%) hue-rotate(357deg) brightness(95%) contrast(105%);
 }
+
+.project-summary {
+  margin-bottom: 0.5em;
+  color: var(--color-text, #222);
+  font-size: 1em;
+}
+
+.project-details summary {
+  cursor: pointer;
+  color: #1891b6;
+  font-weight: 500;
+  margin-bottom: 0.4em;
+  outline: none;
+  display:flex;
+  align-items: center;
+  transition: color 0.2s;
+  list-style: none;
+  gap:0.3em;
+  position: relative;
+}
+
+.project-details p {
+  margin: 0.5em 0 0 0;
+  color: var(--color-text, #222);
+  font-size: 1em;
+}
+
+.project-details .divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, #e0e7ef 0%, #1891b6 100%);
+  border: none;
+  margin: 0.3em 0 0.7em 0;
+  display: block;
+  min-height: 0;
+  max-height: 1px;
+  padding: 0;
+}
+
+.project-details[open] .divider {
+  /* Opcional: puedes animar la línea si quieres */
+  animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; width: 0; }
+  to   { opacity: 1; width: 100%; }
+}
+
+img.ampliable {
+  width: 100%;
+  max-width: 100%;
+  cursor: zoom-in;
+  border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img.ampliable:hover {
+  transform: scale(1.02);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
+  padding: 2rem;
+}
+
+.lightbox-overlay img {
+  max-width: 100%;
+  max-height: 90vh;
+  border-radius: 16px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  object-fit: contain;
+}
+
+.project-card img.ampliable {
+  width: 100%;
+  max-width: 300px; /* o el ancho que consideres ideal */
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+
+
 
 

@@ -33,3 +33,44 @@ themeToggle.addEventListener('click', () => {
   const currentTheme = html.getAttribute('data-theme');
   setTheme(currentTheme === 'dark' ? 'light' : 'dark');
 });
+
+document.querySelectorAll('.project-details').forEach(detail => {
+  const summary = detail.querySelector('summary');
+  const text = summary.querySelector('.toggle-text');
+  const chevron = summary.querySelector('.chevron');
+  summary.addEventListener('click', function(e) {
+    // Timeout para esperar el cambio de estado open
+    setTimeout(() => {
+      if (detail.open) {
+        text.textContent = 'Leer menos';
+        chevron.textContent = '˄';
+      } else {
+        text.textContent = 'Leer más';
+        chevron.textContent = '˅';
+      }
+    }, 10);
+  });
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".ampliable");
+
+  images.forEach((img) => {
+    img.addEventListener("click", () => {
+      const overlay = document.createElement("div");
+      overlay.classList.add("lightbox-overlay");
+
+      const enlargedImg = document.createElement("img");
+      enlargedImg.src = img.src;
+      overlay.appendChild(enlargedImg);
+
+      overlay.addEventListener("click", () => {
+        document.body.removeChild(overlay);
+      });
+
+      document.body.appendChild(overlay);
+    });
+  });
+});
+
+
