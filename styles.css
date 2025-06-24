@@ -776,6 +776,22 @@ img.ampliable:hover {
   cursor: pointer;
 }
 
+.tech-button {
+  display: inline-block;
+  background-color: #2196f3;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  margin-left: 12px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+  margin-bottom: 5px;
+}
+
+.tech-button:hover {
+  background-color: #1976d2;
+}
 
 
 
